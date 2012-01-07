@@ -1,7 +1,8 @@
 *.class
 .gradle/
 .DS_Store*
-multiverse-gamma/build/
-multiverse-site/build/
+benchy-driver/build/
+benchy-framework/build/
+build/
 *.iml
 .idea/
