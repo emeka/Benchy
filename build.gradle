@@ -14,13 +14,13 @@ allprojects {
     def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 
     repositories {
-        mavenRepo urls: localMavenRepo
+        mavenRepo(url: localMavenRepo)
         mavenCentral()
-        mavenRepo(urls: [
-                'http://source.db4o.com/maven',
-                'http://snapshots.repository.codehaus.org',
-                'http://download.java.net/maven/2/',
-                'https://maven.atlassian.com/content/groups/public'])
+        mavenRepo(url: 'http://download.java.net/maven/2/')
+        mavenRepo(url: 'http://repository.codehaus.org/')
+        mavenRepo(url: 'https://maven.atlassian.com/content/groups/public')
+        mavenRepo(url:   'http://source.db4o.com/maven')
+        mavenRepo(url: 'http://snapshots.repository.codehaus.org')
     }
 
     dependencies {
@@ -56,7 +56,7 @@ project(':benchy-framework') {
 
     dependencies {
         compile group: 'junit', name: 'junit', version: '4.8.2'
-        groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.5'
+        groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.5'
         groovy group: 'com.db4o', name: 'db4o-full-java5', version: '8.0-SNAPSHOT'
         groovy group: 'commons-cli', name: 'commons-cli', version: '1.2'
         groovy group: 'jfree', name: 'jfreechart', version: '1.0.13'

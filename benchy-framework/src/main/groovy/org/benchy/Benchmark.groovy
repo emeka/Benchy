@@ -28,7 +28,7 @@ class Benchmark {
 
     def propertyMissing(String name) { settings.get(name) }
 
-    void run() {
+    public void run() {
         println("Benchy > Starting benchmark [$name] and id [${id}] with a total of ${testCases.size()} testcases")
         testCases.each{it.clearResults()}
 
@@ -46,7 +46,7 @@ class Benchmark {
             if (testCase.warmupRunIterationCount > 0) {
                 println("Benchy > Starting warmup with a total of ${testCase.warmupRunIterationCount} iterations")
                 for (def iteration in 1..testCase.warmupRunIterationCount) {
-                    run(testCase,driver, iteration, testCase.warmupRunIterationCount, true)
+                    runTestCase(testCase,driver, iteration, testCase.warmupRunIterationCount, true)
                 }
                 println("Benchy > Finished warmup")
             } else {
@@ -57,7 +57,7 @@ class Benchmark {
             println("Benchy > Executing a total of ${testCase.warmupRunIterationCount} benchmark iterations")
 
             for (def iteration in 1..testCase.testCaseIterationCount) {
-                def result = run(testCase,driver, iteration, testCase.testCaseIterationCount, false)
+                def result = runTestCase(testCase,driver, iteration, testCase.testCaseIterationCount, false)
                 testCase.add(result)
             }
             testCaseIteration++;
@@ -68,7 +68,7 @@ class Benchmark {
         println("Benchy > Benchmark completed in ${durationMs/1000} seconds")
     }
 
-    private TestCaseResult run(TestCase testCase, BenchmarkDriver driver, long iteration, long maxIterations, boolean warmup) {
+    private TestCaseResult runTestCase(TestCase testCase, BenchmarkDriver driver, long iteration, long maxIterations, boolean warmup) {
         println("Benchy > -------------------------------------------------------")
         if (warmup) {
             println("Benchy > Running warmup iteration [$iteration/$maxIterations] for testcase [${testCase.name}]")
