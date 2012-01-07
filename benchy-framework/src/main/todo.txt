@@ -1,0 +1,106 @@
+-----------------------------------------------------------------
+                                TODO
+-----------------------------------------------------------------
+
+- date
+
+    - benchy-delete: delete all benchmarks after a certain period
+
+    - benchy-delete: delete all benchmarks before a certain period
+
+    - benchy-list: show benchmarks after a certain date
+
+    - benchy-list: show benchmarks before a certain date
+
+    - benchy-listnames: show benchmarks after a certain date
+
+    - benchy-listnames: show benchmarks before a certain date
+
+    - searcher: make it easy to retrieve benchmarks from last day
+
+    - searcher: make it easy to retrieve benchmarks from last week
+
+    - searcher: make it easy to retrieve benchmarks from last month
+
+    - searcher: make it easy to retrieve benchmarks from last year
+
+    - searcher: make it easy to retrieve benchmarks from all time
+
+- show number of benchmarks executed for a benchmark
+
+- how to add classpath
+
+- make it possible to execute as main? e.g. for vtune integration
+
+- is it possible to retrieve the arguments that where passed to the jvm
+
+- show all benchmarks with a specific name
+
+- groovy:display use a closure on all benchmarks instead of retrieving them first?
+
+- benchy-execute should have option to feed the script instead of pointing to a file
+
+- benchy-display should have options to feed the script instead of pointing to a file
+
+-----------------------------------------------------------------
+                         DONE
+-----------------------------------------------------------------
+
+- variable number of processors with the benchy-execute
+
+- optional time based benchmark execution
+
+- a command that displays the content of a benchmark/testcase
+
+- a single jar should be created for the driver stuff.
+
+- warmup only for first run? -> can be added in the benchmark building script
+
+- version number is now integrated in the build
+
+- benchy-delete: delete all benchmarks with a certain name
+
+- list testcases of benchmark
+
+- show testcase
+
+- all properties on the benchmark are now placed in map
+
+- test case results are now part of the testcase instead of benchmark
+
+- the x-axis needs integer domain
+
+- simple method for writing to png
+
+- searcher should be used in show script
+
+- driver is not serialized anymore
+
+- benchy-list improved date formatting
+
+- list of all benchmark names
+
+- make distro
+
+    - distro: classpath should be set on scripts
+
+- distro: make zip
+
+- main for benchy-show
+
+- main for benchy-execute
+
+- main for benchy-delete
+
+- main for benchy-list
+
+- list benchmarks by name
+
+- delete specific benchmark
+
+- list script should show the id's
+
+- list all benchmarks should be sorted by date
+
+- problem with the loaddb
+

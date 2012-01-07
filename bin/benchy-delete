@@ -1,0 +1,3 @@
+#!/bin/sh
+
+java -classpath "$BENCHY_HOME/libs/*" $BENCHY_OPTS org.codehaus.groovy.tools.GroovyStarter --main org.benchy.BenchyDelete "$@"

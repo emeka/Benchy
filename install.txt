@@ -1,0 +1,11 @@
+How to install (*nix):
+
+- add BENCH_HOME to your env
+
+- add $BENCHY_HOME/bin to your path
+
+- chmod +x * on all the files in $BENCH_HOME/bin
+
+How to install (Windows):
+
+- tbd. The batch files need to be created, so if somebody is up to it, it would be very welcome.

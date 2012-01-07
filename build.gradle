@@ -1,0 +1,81 @@
+allprojects {
+    apply plugin: 'base'
+    apply plugin: 'maven'
+    apply plugin: 'project-reports'
+
+    configurations {
+        deployerJars
+    }
+
+    sourceCompatibility = 1.6
+    version = '0.1-SNAPSHOT'
+    group = 'org.benchy'
+
+    def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
+    repositories {
+        mavenRepo urls: localMavenRepo
+        mavenCentral()
+        mavenRepo(urls: [
+                'http://source.db4o.com/maven',
+                'http://snapshots.repository.codehaus.org',
+                'http://download.java.net/maven/2/',
+                'https://maven.atlassian.com/content/groups/public'])
+    }
+
+    dependencies {
+        deployerJars group: 'org.apache.maven.wagon', name: 'wagon-webdav-jackrabbit', version: '1.0-beta-6'
+        deployerJars "org.apache.maven.wagon:wagon-ssh:1.0-beta-2"
+    }
+
+    task deploy(dependsOn: ['clean', 'install', 'uploadArchives']) << {
+    }
+
+//    jar.doLast {
+//        ant.delete(file: "$buildDir/benchy-${version}.jar")
+//    }
+}
+
+task zip(dependsOn: ['benchy-driver:install', 'benchy-framework:install', 'benchy-framework:distLibs']) << {
+    ant.delete(file: "benchy-framework/build/distLibs/benchy-driver-0.1-SNAPSHOT.jar")
+    ant.zip(destfile: "build/benchy-${version}.zip") {
+        zipfileset(dir: 'benchy-driver/build/libs', prefix: "benchy-${version}/libs")
+        zipfileset(dir: 'benchy-framework/build/libs', prefix: "benchy-${version}/libs")
+        zipfileset(dir: 'benchy-framework/build/distLibs', prefix: "benchy-${version}/libs")
+        zipfileset(dir: 'bin', prefix: "benchy-${version}/bin")
+        zipfileset(file: 'install.txt', prefix: "benchy-${version}/")
+    }
+}
+
+project(':benchy-framework') {
+    apply plugin: 'groovy'
+
+    dependencies {
+        compile group: "${group}", name: 'benchy-driver', version: "${version}"
+    }
+
+    dependencies {
+        compile group: 'junit', name: 'junit', version: '4.8.2'
+        groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.5'
+        groovy group: 'com.db4o', name: 'db4o-full-java5', version: '8.0-SNAPSHOT'
+        groovy group: 'commons-cli', name: 'commons-cli', version: '1.2'
+        groovy group: 'jfree', name: 'jfreechart', version: '1.0.13'
+    }
+
+    task distLibs(type: Copy, dependsOn: configurations.runtime) {
+        into file("$buildDir/distLibs")
+        from configurations.runtime
+    }
+
+    javadoc {
+        title = "Benchy $version"
+    }
+}
+
+project(':benchy-driver') {
+    apply plugin: 'java'
+
+    javadoc {
+        title = "Benchy $version"
+    }
+}
