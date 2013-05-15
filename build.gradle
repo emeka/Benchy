@@ -7,7 +7,6 @@ allprojects {
         deployerJars
     }
 
-    sourceCompatibility = 1.6
     version = '0.1-SNAPSHOT'
     group = 'org.benchy'
 
@@ -55,11 +54,11 @@ project(':benchy-framework') {
     }
 
     dependencies {
-        compile group: 'junit', name: 'junit', version: '4.8.2'
-        groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.5'
-        groovy group: 'com.db4o', name: 'db4o-full-java5', version: '8.0-SNAPSHOT'
-        groovy group: 'commons-cli', name: 'commons-cli', version: '1.2'
-        groovy group: 'jfree', name: 'jfreechart', version: '1.0.13'
+        testCompile group: 'junit', name: 'junit', version: '4.8.2'
+        compile group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.5'
+        compile group: 'com.db4o', name: 'db4o-full-java5', version: '8.0-SNAPSHOT'
+        compile group: 'commons-cli', name: 'commons-cli', version: '1.2'
+        compile group: 'jfree', name: 'jfreechart', version: '1.0.13'
     }
 
     task distLibs(type: Copy, dependsOn: configurations.runtime) {
@@ -74,6 +73,8 @@ project(':benchy-framework') {
 
 project(':benchy-driver') {
     apply plugin: 'java'
+
+    sourceCompatibility = 1.6
 
     javadoc {
         title = "Benchy $version"
